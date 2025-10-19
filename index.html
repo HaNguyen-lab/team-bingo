@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビンゴプレイヤーページ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ビンゴシート</h1>
+        <p>リンクを持っている人は誰でもアクセスできます。シートを更新するにはページをリロードしてください。</p>
+        <table id="bingo-card"></table>
+        <button id="generate-btn">新しいシートを生成</button>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // プレイヤーページ専用: ページロード時にシートを生成
+        generatePlayerCard();
+        document.getElementById('generate-btn').addEventListener('click', generatePlayerCard);
+    </script>
+</body>
+</html>
