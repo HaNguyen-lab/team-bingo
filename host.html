@@ -6,6 +6,7 @@
     <title>ビンゴホストページ</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"> <!-- Favicon link -->
 </head>
 <body>
     <div class="container">
@@ -19,13 +20,23 @@
     <script src="script.js"></script>
     <script>
         // ホストページ専用: パスワード保護（シンプル）
-        const password = prompt('パスワードを入力してください:');
-        if (password !== 'bingo123') { // ここをあなたの希望のパスワードに変更
-            document.body.innerHTML = '<h1>アクセス拒否</h1>';
-        } else {
-            loadHostState();
-            document.getElementById('call-btn').addEventListener('click', callNextItem);
-            document.getElementById('reset-btn').addEventListener('click', resetGame);
+        try {
+            const password = prompt('パスワードを入力してください:');
+            if (password !== 'bingo123') { // ここをあなたの希望のパスワードに変更
+                document.body.innerHTML = '<h1>アクセス拒否</h1>';
+            } else {
+                loadHostState();
+                document.getElementById('call-btn').addEventListener('click', () => {
+                    console.log('Call button clicked');
+                    callNextItem();
+                });
+                document.getElementById('reset-btn').addEventListener('click', () => {
+                    console.log('Reset button clicked');
+                    resetGame();
+                });
+            }
+        } catch (error) {
+            console.error('Error initializing host page:', error);
         }
     </script>
 </body>
