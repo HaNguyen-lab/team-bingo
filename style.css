@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: linear-gradient(to bottom, #f0f8ff, #ffe4e1); /* Pastel gradient like the example */
+    background: linear-gradient(to bottom, #f0f8ff, #ffe4e1); /* Pastel gradient */
     text-align: center;
     padding: 20px;
     min-height: 100vh;
@@ -16,33 +16,41 @@ body {
     background: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for appeal */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
 }
 
-/* Decorative elements mimicking confetti/icons */
-.container::before, .container::after {
-    content: '';
+/* Decorative icons around player sheet */
+.container::before, .container::after,
+.container::nth-child(1)::before, .container::nth-child(1)::after {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    opacity: 0.5;
+    font-size: 24px;
+    opacity: 0.6;
 }
 .container::before {
-    top: -10px;
-    left: -10px;
-    background: #ff69b4; /* Pink dot */
+    content: '🌟'; /* Star */
+    top: -20px;
+    left: -20px;
 }
 .container::after {
-    bottom: -10px;
-    right: -10px;
-    background: #87ceeb; /* Blue dot */
+    content: '❤️'; /* Heart */
+    bottom: -20px;
+    right: -20px;
+}
+.container::nth-child(1)::before {
+    content: '🎈'; /* Balloon */
+    top: 50%;
+    left: -30px;
+}
+.container::nth-child(1)::after {
+    content: '🎉'; /* Confetti */
+    top: 50%;
+    right: -30px;
 }
 
 h1 {
-    font-family: 'Pacifico', cursive; /* Playful script font like the example */
-    color: #ff69b4; /* Pinkish color */
+    font-family: 'Pacifico', cursive;
+    color: #ff69b4; /* Pinkish */
     font-size: 2.5em;
     margin-bottom: 10px;
 }
@@ -58,32 +66,31 @@ table {
 }
 
 td {
-    border: 2px solid #add8e6; /* Light blue borders like the example */
-    border-radius: 10px; /* Rounded corners */
-    width: 80px; /* Larger cells for better readability */
+    border: 2px solid #add8e6; /* Light blue borders */
+    border-radius: 10px;
+    width: 80px;
     height: 80px;
     text-align: center;
     vertical-align: middle;
     font-size: 18px;
-    background-color: #fff; /* White background */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease;
 }
 
 td.free {
-    background-color: #ffd700; /* Gold like free space */
+    background-color: #ffd700; /* Gold */
     font-weight: bold;
     font-size: 20px;
 }
 
 td.marked {
-    background-color: #90ee90; /* Green marked */
-    text-decoration: line-through;
+    background-color: #90ee90; /* Green */
     position: relative;
 }
 
 td.marked::after {
-    content: '✔'; /* Checkmark for fun */
+    content: '✔'; /* Checkmark */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -101,7 +108,7 @@ button {
     margin: 10px;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 25px; /* Rounded buttons */
+    border-radius: 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
 }
