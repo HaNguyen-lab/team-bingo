@@ -1,51 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to bottom, #f0f8ff, #ffe4e1); /* Pastel gradient like the example */
     text-align: center;
     padding: 20px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
 .container {
     max-width: 600px;
     margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for appeal */
+    position: relative;
 }
 
-h1, h2 {
+/* Decorative elements mimicking confetti/icons */
+.container::before, .container::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+.container::before {
+    top: -10px;
+    left: -10px;
+    background: #ff69b4; /* Pink dot */
+}
+.container::after {
+    bottom: -10px;
+    right: -10px;
+    background: #87ceeb; /* Blue dot */
+}
+
+h1 {
+    font-family: 'Pacifico', cursive; /* Playful script font like the example */
+    color: #ff69b4; /* Pinkish color */
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+h2 {
     color: #333;
 }
 
 table {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 5px;
     margin: 20px auto;
 }
 
 td {
-    border: 1px solid #000;
-    width: 60px;
-    height: 60px;
+    border: 2px solid #add8e6; /* Light blue borders like the example */
+    border-radius: 10px; /* Rounded corners */
+    width: 80px; /* Larger cells for better readability */
+    height: 80px;
     text-align: center;
     vertical-align: middle;
     font-size: 18px;
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    transition: background-color 0.3s ease;
 }
 
 td.free {
-    background-color: #ffd700;
+    background-color: #ffd700; /* Gold like free space */
     font-weight: bold;
+    font-size: 20px;
 }
 
 td.marked {
-    background-color: #90ee90;
+    background-color: #90ee90; /* Green marked */
     text-decoration: line-through;
+    position: relative;
+}
+
+td.marked::after {
+    content: '✔'; /* Checkmark for fun */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: #228b22;
+    opacity: 0.7;
 }
 
 button {
     background-color: #4caf50;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
     margin: 10px;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 25px; /* Rounded buttons */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -58,8 +116,17 @@ ul {
 }
 
 li {
-    background-color: #eee;
+    background-color: #f0f8ff;
     margin: 5px;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 600px) {
+    td {
+        width: 60px;
+        height: 60px;
+        font-size: 14px;
+    }
 }
