@@ -44,21 +44,26 @@ function generatePlayerCard() {
             }
         });
 
-        // Add spans for balloon and confetti icons
+        // Add spans for decorative icons
         const container = document.querySelector('.container-decorated');
         if (!container) throw new Error('Container not found');
         // Remove existing icons to prevent duplicates
-        const existingIcons = container.querySelectorAll('.icon-balloon, .icon-confetti');
+        const existingIcons = container.querySelectorAll('.icon-balloon, .icon-confetti, .icon-dog, .icon-cat, .icon-rabbit');
         existingIcons.forEach(icon => icon.remove());
         // Add new icons
-        const balloonSpan = document.createElement('span');
-        balloonSpan.className = 'icon-balloon';
-        balloonSpan.textContent = '🎈';
-        const confettiSpan = document.createElement('span');
-        confettiSpan.className = 'icon-confetti';
-        confettiSpan.textContent = '🎉';
-        container.appendChild(balloonSpan);
-        container.appendChild(confettiSpan);
+        const icons = [
+            { class: 'icon-balloon', content: '🎈', },
+            { class: 'icon-confetti', content: '🎉', },
+            { class: 'icon-dog', content: '🐶', },
+            { class: 'icon-cat', content: '😺', },
+            { class: 'icon-rabbit', content: '🐰', },
+        ];
+        icons.forEach(icon => {
+            const span = document.createElement('span');
+            span.className = icon.class;
+            span.textContent = icon.content;
+            container.appendChild(span);
+        });
     } catch (error) {
         console.error('Error generating player card:', error);
     }
