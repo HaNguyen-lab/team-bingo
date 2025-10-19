@@ -26,11 +26,18 @@ function generatePlayerCard() {
             const td = document.createElement('td');
             td.textContent = cell;
             if (cell === 'フリー 🎁') td.classList.add('free');
-            // クリックでマーク（手動）
-            td.addEventListener('click', () => td.classList.toggle('marked'));
             tr.appendChild(td);
         });
         table.appendChild(tr);
+    });
+
+    // Add event listener to table for delegated clicks
+    table.addEventListener('click', (event) => {
+        const td = event.target.closest('td');
+        if (td && !td.classList.contains('free')) { // Prevent marking free cell
+            console.log(`Clicked cell with content: ${td.textContent}`); // Debug log
+            td.classList.toggle('marked');
+        }
     });
 
     // Add spans for balloon and confetti icons
