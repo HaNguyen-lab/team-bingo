@@ -1,155 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap');
-
-body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: linear-gradient(to bottom, #f0f8ff, #ffe4e1); /* Pastel gradient */
-    text-align: center;
-    padding: 20px;
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-/* Decorative icons around player sheet */
-.container-decorated::before,
-.container-decorated::after {
-    position: absolute;
-    font-size: 24px;
-    opacity: 0.6;
-    font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
-}
-.container-decorated::before {
-    content: '🌟'; /* Star */
-    top: -20px;
-    left: -20px;
-}
-.container-decorated::after {
-    content: '🎇'; /* Firework */
-    bottom: -20px;
-    right: -20px;
-}
-
-/* Balloon and confetti icons */
-.icon-balloon,
-.icon-confetti {
-    position: absolute;
-    font-size: 24px;
-    opacity: 0.6;
-    font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
-}
-.icon-balloon {
-    content: '🎈';
-    top: 50%;
-    left: -30px;
-}
-.icon-confetti {
-    content: '🎉';
-    top: 50%;
-    right: -30px;
-}
-
-h1 {
-    font-family: 'Pacifico', cursive;
-    color: #ff69b4; /* Pinkish */
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-h2 {
-    color: #333;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 5px;
-    margin: 20px auto;
-}
-
-td {
-    border: 2px solid #add8e6; /* Light blue borders */
-    border-radius: 10px;
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 22px; /* Larger font size */
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease;
-}
-
-td.free {
-    background-color: #ffd700; /* Gold */
-    font-weight: bold;
-    font-size: 20px;
-}
-
-td.marked {
-    background-color: #90ee90; /* Green */
-    position: relative;
-}
-
-td.marked::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    border: 2px solid #228b22; /* Green circle, no fill */
-    border-radius: 50%;
-}
-
-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    margin: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #f0f8ff;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-@media (max-width: 600px) {
-    td {
-        width: 60px;
-        height: 60px;
-        font-size: 16px; /* Adjusted for mobile */
-    }
-    td.marked::after {
-        width: 20px;
-        height: 20px;
-        border-width: 1px; /* Thinner circle for mobile */
-    }
-}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビンゴホストページ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"> <!-- Favicon link -->
+</head>
+<body>
+    <div class="container">
+        <h1>ホストページ</h1>
+        <p>これはホスト専用です。パスワードを入力してください（デフォルト: 'bingo123' – 変更してください）。</p>
+        <button id="call-btn">次を呼び出す</button>
+        <button id="reset-btn">ゲームをリセット</button>
+        <h2>呼ばれた項目:</h2>
+        <ul id="called-list"></ul>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // ホストページ専用: パスワード保護（シンプル）
+        try {
+            const password = prompt('パスワードを入力してください:');
+            if (password !== 'bingo123') { // ここをあなたの希望のパスワードに変更
+                document.body.innerHTML = '<h1>アクセス拒否</h1>';
+            } else {
+                loadHostState();
+                document.getElementById('call-btn').addEventListener('click', () => {
+                    console.log('Call button clicked');
+                    callNextItem();
+                });
+                document.getElementById('reset-btn').addEventListener('click', () => {
+                    console.log('Reset button clicked');
+                    resetGame();
+                });
+            }
+        } catch (error) {
+            console.error('Error initializing host page:', error);
+        }
+    </script>
+</body>
+</html>
