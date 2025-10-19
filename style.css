@@ -24,7 +24,7 @@ body {
 .container-decorated::before,
 .container-decorated::after {
     position: absolute;
-    font-size: 24px;
+    font-size: 32px; /* Larger icons */
     opacity: 0.6;
     font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
@@ -39,11 +39,14 @@ body {
     right: -20px;
 }
 
-/* Balloon and confetti icons */
+/* Balloon, confetti, and animal icons */
 .icon-balloon,
-.icon-confetti {
+.icon-confetti,
+.icon-dog,
+.icon-cat,
+.icon-rabbit {
     position: absolute;
-    font-size: 24px;
+    font-size: 32px; /* Larger icons */
     opacity: 0.6;
     font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
@@ -53,6 +56,18 @@ body {
 }
 .icon-confetti {
     top: 50%;
+    right: -30px;
+}
+.icon-dog {
+    top: -20px;
+    right: -20px;
+}
+.icon-cat {
+    bottom: -20px;
+    left: -20px;
+}
+.icon-rabbit {
+    top: 30%;
     right: -30px;
 }
 
@@ -105,8 +120,8 @@ td.marked::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
+    width: 40px; /* Larger circle */
+    height: 40px;
     border: 2px solid #228b22; /* Green circle, no fill */
     border-radius: 50%;
 }
@@ -148,8 +163,17 @@ li {
         font-size: 16px; /* Adjusted for mobile */
     }
     td.marked::after {
-        width: 20px;
-        height: 20px;
+        width: 30px; /* Larger circle for mobile */
+        height: 30px;
         border-width: 1px; /* Thinner circle for mobile */
+    }
+    .container-decorated::before,
+    .container-decorated::after,
+    .icon-balloon,
+    .icon-confetti,
+    .icon-dog,
+    .icon-cat,
+    .icon-rabbit {
+        font-size: 24px; /* Slightly smaller icons for mobile */
     }
 }
