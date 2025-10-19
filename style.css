@@ -80,4 +80,70 @@ td {
     border: 2px solid #add8e6; /* Light blue borders */
     border-radius: 10px;
     width: 80px;
-    height: 80
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px; /* Larger font size */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+}
+
+td.free {
+    background-color: #ffd700; /* Gold */
+    font-weight: bold;
+    font-size: 20px;
+}
+
+td.marked {
+    background-color: #90ee90; /* Green */
+    position: relative;
+}
+
+td.marked::after {
+    content: '✔'; /* Checkmark */
+    position: absolute;
+    top: 10px; /* Top-right */
+    right: 10px;
+    font-size: 24px;
+    color: #228b22;
+    opacity: 0.7;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f0f8ff;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 600px) {
+    td {
+        width: 60px;
+        height: 60px;
+        font-size: 16px; /* Adjusted for mobile */
+    }
+}
