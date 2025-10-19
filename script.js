@@ -1,5 +1,5 @@
 // 共通のアイテムプール: 1-70の数字 + 5つのワード（あなたのワードに置き換え）
-const items = [...Array(70).keys().map(i => i + 1), 'ワード1', 'ワード2', 'ワード3', 'ワード4', 'ワード5'];
+const items = [...Array(70).keys().map(i => i + 1), 'My way', 'ワード2', 'ワード3', 'ワード4', 'ワード5'];
 
 // プレイヤーシート生成関数
 function generatePlayerCard() {
