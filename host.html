@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビンゴホストページ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ホストページ</h1>
+        <p>これはホスト専用です。パスワードを入力してください（デフォルト: 'bingo123' – 変更してください）。</p>
+        <button id="call-btn">次を呼び出す</button>
+        <button id="reset-btn">ゲームをリセット</button>
+        <h2>呼ばれた項目:</h2>
+        <ul id="called-list"></ul>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // ホストページ専用: パスワード保護（シンプル）
+        const password = prompt('パスワードを入力してください:');
+        if (password !== 'bingo123') { // ここをあなたの希望のパスワードに変更
+            document.body.innerHTML = '<h1>アクセス拒否</h1>';
+        } else {
+            loadHostState();
+            document.getElementById('call-btn').addEventListener('click', callNextItem);
+            document.getElementById('reset-btn').addEventListener('click', resetGame);
+        }
+    </script>
+</body>
+</html>
