@@ -21,8 +21,7 @@ body {
 }
 
 /* Decorative icons around player sheet */
-.container::before, .container::after,
-.container::nth-child(1)::before, .container::nth-child(1)::after {
+.container::before, .container::after {
     position: absolute;
     font-size: 24px;
     opacity: 0.6;
@@ -33,16 +32,23 @@ body {
     left: -20px;
 }
 .container::after {
-    content: '🎇'; /* Firework (replaced heart) */
+    content: '🎇'; /* Firework */
     bottom: -20px;
     right: -20px;
 }
-.container::nth-child(1)::before {
+
+/* Additional icons using pseudo-elements on a wrapper */
+.container-wrapper::before, .container-wrapper::after {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.6;
+}
+.container-wrapper::before {
     content: '🎈'; /* Balloon */
     top: 50%;
     left: -30px;
 }
-.container::nth-child(1)::after {
+.container-wrapper::after {
     content: '🎉'; /* Confetti */
     top: 50%;
     right: -30px;
@@ -72,7 +78,7 @@ td {
     height: 80px;
     text-align: center;
     vertical-align: middle;
-    font-size: 22px; /* Increased font size */
+    font-size: 22px; /* Larger font size */
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease;
@@ -92,7 +98,7 @@ td.marked {
 td.marked::after {
     content: '✔'; /* Checkmark */
     position: absolute;
-    top: 10px; /* Moved to top-right */
+    top: 10px; /* Top-right */
     right: 10px;
     font-size: 24px;
     color: #228b22;
