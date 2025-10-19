@@ -1,14 +1,14 @@
 // 共通のアイテムプール: 1-70の数字 + 5つのワード（あなたのワードに置き換え）
-const items = [...Array(70).keys().map(i => i + 1), 'My way', 'ワード2', 'ワード3', 'ワード4', 'ワード5'];
+const items = [...Array(70).keys().map(i => i + 1), 'ワード1', 'ワード2', 'ワード3', 'ワード4', 'ワード5'];
 
 // プレイヤーシート生成関数
 function generatePlayerCard() {
     // アイテムをシャッフルして24個選ぶ
     const shuffled = [...items].sort(() => Math.random() - 0.5).slice(0, 24);
     
-    // 5x5グリッド作成（中央FREE）
+    // 5x5グリッド作成（中央フリー）
     const grid = Array(5).fill().map(() => Array(5).fill(null));
-    grid[2][2] = 'FREE';
+    grid[2][2] = 'フリー 🎁'; // Japanese 'Free' with gift emoji to match example
     let idx = 0;
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
@@ -25,7 +25,7 @@ function generatePlayerCard() {
         row.forEach(cell => {
             const td = document.createElement('td');
             td.textContent = cell;
-            if (cell === 'FREE') td.classList.add('free');
+            if (cell === 'フリー 🎁') td.classList.add('free');
             // クリックでマーク（手動）
             td.addEventListener('click', () => td.classList.toggle('marked'));
             tr.appendChild(td);
@@ -78,6 +78,8 @@ function saveHostState() {
 function resetGame() {
     window.remaining = [...items];
     window.called = [];
-    saveHostState();
+    // localStorageを完全にクリア
+    localStorage.removeItem('remaining');
+    localStorage.removeItem('called');
     updateCalledList();
 }
