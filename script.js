@@ -8,7 +8,7 @@ function generatePlayerCard() {
     
     // 5x5グリッド作成（中央フリー）
     const grid = Array(5).fill().map(() => Array(5).fill(null));
-    grid[2][2] = 'フリー 🎁'; // Japanese 'Free' with gift emoji to match example
+    grid[2][2] = 'フリー 🎁'; // Japanese 'Free' with gift emoji
     let idx = 0;
     for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 5; j++) {
