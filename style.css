@@ -22,13 +22,11 @@ body {
 
 /* Decorative icons around player sheet */
 .container-decorated::before,
-.container-decorated::after,
-.container-decorated .icon-balloon::before,
-.container-decorated .icon-confetti::after {
+.container-decorated::after {
     position: absolute;
     font-size: 24px;
     opacity: 0.6;
-    font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif; /* Ensure emoji rendering */
+    font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
 .container-decorated::before {
     content: '🌟'; /* Star */
@@ -40,23 +38,24 @@ body {
     bottom: -20px;
     right: -20px;
 }
-.container-decorated .icon-balloon::before {
-    content: '🎈'; /* Balloon */
+
+/* Balloon and confetti icons */
+.icon-balloon,
+.icon-confetti {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.6;
+    font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
+}
+.icon-balloon {
+    content: '🎈';
     top: 50%;
     left: -30px;
 }
-.container-decorated .icon-confetti::after {
-    content: '🎉'; /* Confetti */
+.icon-confetti {
+    content: '🎉';
     top: 50%;
     right: -30px;
-}
-
-/* Hidden spans to attach balloon and confetti pseudo-elements */
-.container-decorated .icon-balloon,
-.container-decorated .icon-confetti {
-    position: absolute;
-    width: 0;
-    height: 0;
 }
 
 h1 {
@@ -101,13 +100,15 @@ td.marked {
 }
 
 td.marked::after {
-    content: '✔'; /* Checkmark */
+    content: '';
     position: absolute;
-    top: 10px; /* Top-right */
-    right: 10px;
-    font-size: 24px;
-    color: #228b22;
-    opacity: 0.7;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid #228b22; /* Green circle, no fill */
+    border-radius: 50%;
 }
 
 button {
@@ -145,5 +146,10 @@ li {
         width: 60px;
         height: 60px;
         font-size: 16px; /* Adjusted for mobile */
+    }
+    td.marked::after {
+        width: 20px;
+        height: 20px;
+        border-width: 1px; /* Thinner circle for mobile */
     }
 }
