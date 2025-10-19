@@ -32,6 +32,10 @@ function generatePlayerCard() {
         });
         table.appendChild(tr);
     });
+
+    // Add spans for balloon and confetti icons
+    const container = document.querySelector('.container-decorated');
+    container.innerHTML += '<span class="icon-balloon">🎈</span><span class="icon-confetti">🎉</span>';
 }
 
 // ホスト状態ロード（localStorage使用）
