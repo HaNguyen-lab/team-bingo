@@ -1,90 +1,88 @@
-// 1 to 75 only
-const items = Array.from({ length: 75 }, (_, i) => i + 1);
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap');
 
-// Persistent click listener
-document.addEventListener('click', (e) => {
-    const td = e.target.closest('#bingo-card td');
-    if (td && !td.classList.contains('free')) {
-        td.classList.toggle('marked');
-    }
-});
-
-// Generate card
-function generatePlayerCard() {
-    try {
-        const shuffled = [...items].sort(() => Math.random() - 0.5).slice(0, 24);
-        const grid = Array(5).fill().map(() => Array(5).fill(null));
-        grid[2][2] = 'FREE gift';
-        let idx = 0;
-        for (let i = 0; i < 5; i++) {
-            for (let j = 0; j < 5; j++) {
-                if (i === 2 && j === 2) continue;
-                grid[i][j] = shuffled[idx++];
-            }
-        }
-
-        const table = document.getElementById('bingo-card');
-        if (!table) throw new Error('Table missing');
-        table.innerHTML = '';
-
-        grid.forEach(row => {
-            const tr = document.createElement('tr');
-            row.forEach(cell => {
-                const td = document.createElement('td');
-                td.textContent = cell;
-                if (cell === 'FREE gift') td.classList.add('free');
-                tr.appendChild(td);
-            });
-            table.appendChild(tr);
-        });
-
-        // REAL EMOJIS in JS
-        const container = document.querySelector('.container-decorated');
-        if (!container) throw new Error('Container missing');
-        container.querySelectorAll('.icon-balloon,.icon-confetti,.icon-dog,.icon-cat,.icon-rabbit')
-                 .forEach(el => el.remove());
-
-        const icons = [
-            { cls: 'icon-balloon',   emoji: 'balloon' },
-            { cls: 'icon-confetti',  emoji: 'party popper' },
-            { cls: 'icon-dog',       emoji: 'dog face' },
-            { cls: 'icon-cat',       emoji: 'cat face' },
-            { cls: 'icon-rabbit',    emoji: 'rabbit face' }
-        ];
-        icons.forEach(ic => {
-            const s = document.createElement('span');
-            s.className = ic.cls;
-            s.textContent = ic.emoji;  // REAL EMOJI
-            container.appendChild(s);
-        });
-
-    } catch (err) {
-        console.error('Error:', err);
-    }
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to bottom, #f0f8ff, #ffe4e1);
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+    margin: 0;
 }
 
-// Host functions (unchanged)
-function loadHostState(){
-    window.remaining = JSON.parse(localStorage.getItem('remaining'))||[...items];
-    window.called    = JSON.parse(localStorage.getItem('called'))||[];
-    updateCalledList();
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    position: relative;
+    margin-bottom: 40px;
 }
-function callNextItem(){
-    if(!window.remaining.length) return alert('終了！');
-    const i=Math.floor(Math.random()*window.remaining.length);
-    const item=window.remaining.splice(i,1)[0];
-    window.called.push(item);
-    saveHostState(); updateCalledList();
+
+/* REAL EMOJIS in CSS */
+.container-decorated::before  { content: 'star'; top: -20px; left: -20px; }
+.container-decorated::after   { content: 'fireworks'; bottom: -20px; right: -20px; }
+
+.container-decorated::before,
+.container-decorated::after,
+.icon-balloon,
+.icon-confetti,
+.icon-dog,
+.icon-cat,
+.icon-rabbit {
+    position: absolute;
+    font-size: 32px;
+    opacity: 0.6;
+    font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
-function updateCalledList(){
-    const ul=document.getElementById('called-list'); if(!ul) return;
-    ul.innerHTML=''; window.called.forEach(v=>{const li=document.createElement('li'); li.textContent=v; ul.appendChild(li);});
+
+.icon-balloon   { top: 50%; left: -30px; }
+.icon-confetti  { top: 50%; right: -30px; }
+.icon-dog       { top: -20px; right: -20px; }
+.icon-cat       { bottom: -20px; left: -20px; }
+.icon-rabbit    { top: 30%; right: -30px; }
+
+h1 { font-family: 'Pacifico', cursive; color: #ff69b4; font-size: 2.5em; margin-bottom: 10px; }
+
+table { border-collapse: separate; border-spacing: 5px; margin: 20px auto; }
+
+td {
+    border: 2px solid #add8e6;
+    border-radius: 10px;
+    width: 80px; height: 80px;
+    text-align: center; vertical-align: middle;
+    font-size: 22px; background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: background .3s; cursor: pointer;
 }
-function saveHostState(){
-    localStorage.setItem('remaining',JSON.stringify(window.remaining));
-    localStorage.setItem('called',JSON.stringify(window.called));
+
+td.free { background: #ffd700; font-weight: bold; font-size: 20px; cursor: default; }
+td.marked { background: #90ee90; position: relative; }
+td.marked::after {
+    content: ''; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 40px; height: 40px;
+    border: 2px solid #228b22; border-radius: 50%;
 }
-function resetGame(){
-    window.remaining=[...items]; window.called=[];
-    localStorage.clear(); updateCalledList();
+
+button {
+    background:#4caf50; color:#fff; border:none;
+    padding:12px 24px; margin:10px;
+    cursor:pointer; font-size:16px;
+    border-radius:25px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    transition:background .3s;
+}
+button:hover { background:#45a049; }
+
+ul { list-style:none; padding:0; }
+li { background:#f0f8ff; margin:5px; padding:10px; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,0.05); }
+
+@media (max-width:600px){
+    td { width:60px; height:60px; font-size:16px; }
+    td.marked::after { width:30px; height:30px; border-width:1px; }
+    .container-decorated::before,
+    .container-decorated::after,
+    .icon-balloon,.icon-confetti,.icon-dog,.icon-cat,.icon-rabbit { font-size:24px; }
 }
