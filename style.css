@@ -7,7 +7,6 @@ body {
     padding: 20px;
     min-height: 100vh;
     margin: 0;
-    /* scrollable */
 }
 
 .container {
@@ -21,7 +20,7 @@ body {
     margin-bottom: 40px;
 }
 
-/* Decorative icons – real emojis */
+/* Decorative icons – REAL EMOJIS */
 .container-decorated::before,
 .container-decorated::after {
     position: absolute;
