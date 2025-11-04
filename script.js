@@ -1,22 +1,18 @@
 // Item pool: 1 to 75 only
 const items = Array.from({ length: 75 }, (_, i) => i + 1);
 
-// SINGLE PERSISTENT CLICK LISTENER (document level)
+// SINGLE PERSISTENT CLICK LISTENER
 document.addEventListener('click', (e) => {
     const td = e.target.closest('#bingo-card td');
     if (td && !td.classList.contains('free')) {
-        console.log('Cell clicked:', td.textContent);
         td.classList.toggle('marked');
     }
 });
 
-// プレイヤーシート生成
+// Generate player card
 function generatePlayerCard() {
     try {
-        // Shuffle and pick 24 numbers
         const shuffled = [...items].sort(() => Math.random() - 0.5).slice(0, 24);
-        
-        // 5x5 grid with FREE in center
         const grid = Array(5).fill().map(() => Array(5).fill(null));
         grid[2][2] = 'FREE gift';
         let idx = 0;
@@ -42,7 +38,7 @@ function generatePlayerCard() {
             table.appendChild(tr);
         });
 
-        // Decorative icons (real emojis)
+        // Decorative icons – REAL EMOJIS
         const container = document.querySelector('.container-decorated');
         if (!container) throw new Error('Container missing');
         container.querySelectorAll('.icon-balloon,.icon-confetti,.icon-dog,.icon-cat,.icon-rabbit')
@@ -63,43 +59,32 @@ function generatePlayerCard() {
         });
 
     } catch (err) {
-        console.error('generatePlayerCard error:', err);
+        console.error('Error:', err);
     }
 }
 
-// Host functions (unchanged)
-function loadHostState() {
-    try {
-        window.remaining = JSON.parse(localStorage.getItem('remaining')) || [...items];
-        window.called    = JSON.parse(localStorage.getItem('called')) || [];
-        updateCalledList();
-    } catch (e) { console.error(e); }
+// Host functions
+function loadHostState(){
+    window.remaining = JSON.parse(localStorage.getItem('remaining'))||[...items];
+    window.called    = JSON.parse(localStorage.getItem('called'))||[];
+    updateCalledList();
 }
-function callNextItem() {
-    if (!window.remaining.length) return alert('終了！');
-    const i = Math.floor(Math.random() * window.remaining.length);
-    const item = window.remaining.splice(i, 1)[0];
+function callNextItem(){
+    if(!window.remaining.length) return alert('終了！');
+    const i=Math.floor(Math.random()*window.remaining.length);
+    const item=window.remaining.splice(i,1)[0];
     window.called.push(item);
-    saveHostState();
-    updateCalledList();
+    saveHostState(); updateCalledList();
 }
-function updateCalledList() {
-    const ul = document.getElementById('called-list');
-    if (!ul) return;
-    ul.innerHTML = '';
-    window.called.forEach(v => {
-        const li = document.createElement('li');
-        li.textContent = v;
-        ul.appendChild(li);
-    });
+function updateCalledList(){
+    const ul=document.getElementById('called-list'); if(!ul) return;
+    ul.innerHTML=''; window.called.forEach(v=>{const li=document.createElement('li'); li.textContent=v; ul.appendChild(li);});
 }
-function saveHostState() {
-    localStorage.setItem('remaining', JSON.stringify(window.remaining));
-    localStorage.setItem('called', JSON.stringify(window.called));
+function saveHostState(){
+    localStorage.setItem('remaining',JSON.stringify(window.remaining));
+    localStorage.setItem('called',JSON.stringify(window.called));
 }
-function resetGame() {
-    window.remaining = [...items];
-    window.called = [];
-    localStorage.clear();
-    updateCalledList();
+function resetGame(){
+    window.remaining=[...items]; window.called=[];
+    localStorage.clear(); updateCalledList();
 }
