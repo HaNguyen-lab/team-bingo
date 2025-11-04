@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap'
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap');
+
 body {
     font-family: 'Noto Sans JP', sans-serif;
     background: linear-gradient(to bottom, #f0f8ff, #ffe4e1);
