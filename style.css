@@ -2,12 +2,12 @@
 
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: linear-gradient(to bottom, #f0f8ff, #ffe4e1); /* Pastel gradient */
+    background: linear-gradient(to bottom, #f0f8ff, #ffe4e1);
     text-align: center;
     padding: 20px;
     min-height: 100vh;
-    position: relative;
-    overflow: hidden;
+    margin: 0;
+    /* Scrollable */
 }
 
 .container {
@@ -18,68 +18,49 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
+    margin-bottom: 40px;
 }
 
-/* Decorative icons around player sheet */
+/* Decorative icons */
 .container-decorated::before,
 .container-decorated::after {
     position: absolute;
-    font-size: 32px; /* Larger icons */
+    font-size: 32px;
     opacity: 0.6;
     font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
 .container-decorated::before {
-    content: '🌟'; /* Star */
+    content: 'star';
     top: -20px;
     left: -20px;
 }
 .container-decorated::after {
-    content: '🎇'; /* Firework */
+    content: 'fireworks';
     bottom: -20px;
     right: -20px;
 }
 
-/* Balloon, confetti, and animal icons */
 .icon-balloon,
 .icon-confetti,
 .icon-dog,
 .icon-cat,
 .icon-rabbit {
     position: absolute;
-    font-size: 32px; /* Larger icons */
+    font-size: 32px;
     opacity: 0.6;
     font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
-.icon-balloon {
-    top: 50%;
-    left: -30px;
-}
-.icon-confetti {
-    top: 50%;
-    right: -30px;
-}
-.icon-dog {
-    top: -20px;
-    right: -20px;
-}
-.icon-cat {
-    bottom: -20px;
-    left: -20px;
-}
-.icon-rabbit {
-    top: 30%;
-    right: -30px;
-}
+.icon-balloon { top: 50%; left: -30px; }
+.icon-confetti { top: 50%; right: -30px; }
+.icon-dog { top: -20px; right: -20px; }
+.icon-cat { bottom: -20px; left: -20px; }
+.icon-rabbit { top: 30%; right: -30px; }
 
 h1 {
     font-family: 'Pacifico', cursive;
-    color: #ff69b4; /* Pinkish */
+    color: #ff69b4;
     font-size: 2.5em;
     margin-bottom: 10px;
-}
-
-h2 {
-    color: #333;
 }
 
 table {
@@ -89,28 +70,28 @@ table {
 }
 
 td {
-    border: 2px solid #add8e6; /* Light blue borders */
+    border: 2px solid #add8e6;
     border-radius: 10px;
     width: 80px;
     height: 80px;
     text-align: center;
     vertical-align: middle;
-    font-size: 22px; /* Larger font size */
+    font-size: 22px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: background-color 0.3s ease;
-    cursor: pointer; /* Indicate clickability */
+    cursor: pointer;
 }
 
 td.free {
-    background-color: #ffd700; /* Gold */
+    background-color: #ffd700;
     font-weight: bold;
     font-size: 20px;
-    cursor: default; /* Free cell not clickable */
+    cursor: default;
 }
 
 td.marked {
-    background-color: #90ee90; /* Green */
+    background-color: #90ee90;
     position: relative;
 }
 
@@ -120,9 +101,9 @@ td.marked::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40px; /* Larger circle */
+    width: 40px;
     height: 40px;
-    border: 2px solid #228b22; /* Green circle, no fill */
+    border: 2px solid #228b22;
     border-radius: 50%;
 }
 
@@ -143,37 +124,15 @@ button:hover {
     background-color: #45a049;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #f0f8ff;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
+ul { list-style: none; padding: 0; }
+li { background: #f0f8ff; margin: 5px; padding: 10px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 
 @media (max-width: 600px) {
-    td {
-        width: 60px;
-        height: 60px;
-        font-size: 16px; /* Adjusted for mobile */
-    }
-    td.marked::after {
-        width: 30px; /* Larger circle for mobile */
-        height: 30px;
-        border-width: 1px; /* Thinner circle for mobile */
-    }
+    td { width: 60px; height: 60px; font-size: 16px; }
+    td.marked::after { width: 30px; height: 30px; border-width: 1px; }
     .container-decorated::before,
     .container-decorated::after,
-    .icon-balloon,
-    .icon-confetti,
-    .icon-dog,
-    .icon-cat,
-    .icon-rabbit {
-        font-size: 24px; /* Slightly smaller icons for mobile */
+    .icon-balloon, .icon-confetti, .icon-dog, .icon-cat, .icon-rabbit {
+        font-size: 24px;
     }
 }
