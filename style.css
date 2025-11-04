@@ -7,7 +7,7 @@ body {
     padding: 20px;
     min-height: 100vh;
     margin: 0;
-    /* Scrollable */
+    /* scrollable */
 }
 
 .container {
@@ -16,12 +16,12 @@ body {
     background: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     position: relative;
     margin-bottom: 40px;
 }
 
-/* Decorative icons */
+/* Decorative icons – real emojis */
 .container-decorated::before,
 .container-decorated::after {
     position: absolute;
@@ -29,16 +29,8 @@ body {
     opacity: 0.6;
     font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
-.container-decorated::before {
-    content: 'star';
-    top: -20px;
-    left: -20px;
-}
-.container-decorated::after {
-    content: 'fireworks';
-    bottom: -20px;
-    right: -20px;
-}
+.container-decorated::before  { content: 'star'; top: -20px; left: -20px; }
+.container-decorated::after   { content: 'fireworks'; bottom: -20px; right: -20px; }
 
 .icon-balloon,
 .icon-confetti,
@@ -50,11 +42,11 @@ body {
     opacity: 0.6;
     font-family: 'Noto Sans JP', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
 }
-.icon-balloon { top: 50%; left: -30px; }
-.icon-confetti { top: 50%; right: -30px; }
-.icon-dog { top: -20px; right: -20px; }
-.icon-cat { bottom: -20px; left: -20px; }
-.icon-rabbit { top: 30%; right: -30px; }
+.icon-balloon   { top: 50%; left: -30px; }
+.icon-confetti  { top: 50%; right: -30px; }
+.icon-dog       { top: -20px; right: -20px; }
+.icon-cat       { bottom: -20px; left: -20px; }
+.icon-rabbit    { top: 30%; right: -30px; }
 
 h1 {
     font-family: 'Pacifico', cursive;
@@ -78,8 +70,8 @@ td {
     vertical-align: middle;
     font-size: 22px;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: background-color .3s ease;
     cursor: pointer;
 }
 
@@ -98,41 +90,30 @@ td.marked {
 td.marked::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 40px; height: 40px;
     border: 2px solid #228b22;
     border-radius: 50%;
 }
 
 button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    margin: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    background:#4caf50; color:#fff; border:none;
+    padding:12px 24px; margin:10px;
+    cursor:pointer; font-size:16px;
+    border-radius:25px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    transition:background .3s;
 }
+button:hover { background:#45a049; }
 
-button:hover {
-    background-color: #45a049;
-}
+ul { list-style:none; padding:0; }
+li { background:#f0f8ff; margin:5px; padding:10px; border-radius:10px; box-shadow:0 1px 3px rgba(0,0,0,0.05); }
 
-ul { list-style: none; padding: 0; }
-li { background: #f0f8ff; margin: 5px; padding: 10px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-
-@media (max-width: 600px) {
-    td { width: 60px; height: 60px; font-size: 16px; }
-    td.marked::after { width: 30px; height: 30px; border-width: 1px; }
+@media (max-width:600px){
+    td { width:60px; height:60px; font-size:16px; }
+    td.marked::after { width:30px; height:30px; border-width:1px; }
     .container-decorated::before,
     .container-decorated::after,
-    .icon-balloon, .icon-confetti, .icon-dog, .icon-cat, .icon-rabbit {
-        font-size: 24px;
-    }
+    .icon-balloon,.icon-confetti,.icon-dog,.icon-cat,.icon-rabbit { font-size:24px; }
 }
