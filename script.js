@@ -9,7 +9,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Generate card
+// Generate player card
 function generatePlayerCard() {
     try {
         const shuffled = [...items].sort(() => Math.random() - 0.5).slice(0, 24);
@@ -38,32 +38,19 @@ function generatePlayerCard() {
             table.appendChild(tr);
         });
 
-        // REAL EMOJIS in JS
+        // No icons added
         const container = document.querySelector('.container-decorated');
-        if (!container) throw new Error('Container missing');
-        container.querySelectorAll('.icon-balloon,.icon-confetti,.icon-dog,.icon-cat,.icon-rabbit')
-                 .forEach(el => el.remove());
-
-        const icons = [
-            { cls: 'icon-balloon',   emoji: 'balloon' },
-            { cls: 'icon-confetti',  emoji: 'party popper' },
-            { cls: 'icon-dog',       emoji: 'dog face' },
-            { cls: 'icon-cat',       emoji: 'cat face' },
-            { cls: 'icon-rabbit',    emoji: 'rabbit face' }
-        ];
-        icons.forEach(ic => {
-            const s = document.createElement('span');
-            s.className = ic.cls;
-            s.textContent = ic.emoji;  // REAL EMOJI
-            container.appendChild(s);
-        });
+        if (container) {
+            container.querySelectorAll('.icon-balloon,.icon-confetti,.icon-dog,.icon-cat,.icon-rabbit')
+                     .forEach(el => el.remove());
+        }
 
     } catch (err) {
         console.error('Error:', err);
     }
 }
 
-// Host functions (unchanged)
+// Host functions
 function loadHostState(){
     window.remaining = JSON.parse(localStorage.getItem('remaining'))||[...items];
     window.called    = JSON.parse(localStorage.getItem('called'))||[];
